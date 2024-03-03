@@ -3,7 +3,8 @@ import {
   } from "react-router-dom";
 import Root from "../layout/Root";
 import Home from "../pages/home/Home";
-import Login from "../pages/home/Login";
+import Login from "../pages/Login";
+import SingUp from "../pages/SingUp";
 
   const router = createBrowserRouter([
     {
@@ -19,6 +20,10 @@ import Login from "../pages/home/Login";
     {
       path: "/login",
       element: <Login></Login>
+    },
+    {
+      path: "/singUp",
+      element: <SingUp></SingUp>
     }
   ]);
 
