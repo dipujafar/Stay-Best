@@ -1,6 +1,6 @@
 import { Helmet } from "react-helmet-async";
 import { useForm } from "react-hook-form";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import {
   AiOutlineEye,
   AiOutlineEyeInvisible,
@@ -16,11 +16,13 @@ import { updateProfile } from "firebase/auth";
 import { auth } from "../firebase/firebase.config";
 import Lottie from "lottie-react";
 import signUpAni from "../assets/image/sign_up-ani.json"
+import { toast } from "react-toastify";
 
 const SignUp = () => {
   const [show, setShow] = useState(false);
   const [error, setError] = useState("");
-  const {signUp} = useAuth()
+  const {signUp} = useAuth();
+  const navigate = useNavigate();
   const {
     register,
     handleSubmit,
@@ -33,14 +35,17 @@ const SignUp = () => {
     const imageData = await imageUpload(imageFile);
     console.log(imageData?.data?.url);
 
+    setError('')
     signUp(email, password)
-    .then(res=>{
+    .then(()=>{
       updateProfile(auth.currentUser, {
         displayName: name,
         photoURL: imageData?.data?.url
       })
      .then(()=>{
-      console.log(res.user);
+      toast.success("Successfully Sign Up");
+      navigate("/")
+
      })
      .catch(err=>{
       setError(err?.message);

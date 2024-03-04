@@ -30,7 +30,6 @@ const AuthProvider = ({children}) => {
                 if(currentUser){
                     setUser(currentUser);
                     setLoading(false);
-                    console.log(currentUser);
                 }
                 else{
                     setLoading(false)
@@ -47,7 +46,8 @@ const AuthProvider = ({children}) => {
         loading,
         signUp,
         signIn,
-        logOut    }
+        logOut    
+    }
     return (
         <AuthContext.Provider value={authInfo}>
             {children}

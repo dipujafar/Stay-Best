@@ -12,7 +12,7 @@ const Navbar = () => {
     const handleLogout = () =>{
         logOut()
         .then(()=>{
-            toast("User Successfully Logged Out")
+            toast("User Successfully Logged Out");
         })
       }
 
@@ -52,7 +52,7 @@ const Navbar = () => {
   );
 
   return (
-    <div className="bg-gray-200">
+    <div className="bg-base-100">
       <Container>
         <div className="navbar ">
           <div className="navbar-start">

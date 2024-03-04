@@ -1,6 +1,6 @@
 import { Helmet } from "react-helmet-async";
 import { useForm } from "react-hook-form"
-import { Link } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import {
   AiOutlineEye,
   AiOutlineEyeInvisible,
@@ -11,12 +11,15 @@ import { useState } from "react";
 import useAuth from "../hook/useAuth";
 import Lottie from "lottie-react"
 import loginAni from "../assets/image/login.json"
+import { toast } from "react-toastify";
 
 
 const Login = () => {
     const [show, setShow] = useState(false);
     const [error, setError] = useState("");
-    const {signIn} = useAuth()
+    const {signIn} = useAuth();
+    const navigate = useNavigate();
+    const location = useLocation();
 
     const {
         register,
@@ -28,8 +31,9 @@ const Login = () => {
         const {email, password} = data || {};
 
         signIn(email, password)
-        .then(res=>{
-          console.log(res.user)
+        .then(() =>{
+          toast.success("Successfully Login");
+          navigate(location?.state ? location?.state : '/' )
         })
         .catch(err=>{
           setError(err.message)
