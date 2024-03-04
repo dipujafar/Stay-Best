@@ -52,7 +52,7 @@ const Navbar = () => {
   );
 
   return (
-    <div className="bg-base-100">
+    <div className="bg-base-200">
       <Container>
         <div className="navbar ">
           <div className="navbar-start">
