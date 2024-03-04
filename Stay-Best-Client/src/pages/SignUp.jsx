@@ -6,6 +6,7 @@ import {
   AiOutlineEyeInvisible,
   AiOutlineMail,
 } from "react-icons/ai";
+import { FaCamera } from "react-icons/fa";
 import { RiLockPasswordLine } from "react-icons/ri";
 import { MdPeopleAlt } from "react-icons/md";
 import { useState } from "react";
@@ -13,6 +14,8 @@ import { imageUpload } from "../api/image";
 import useAuth from "../hook/useAuth";
 import { updateProfile } from "firebase/auth";
 import { auth } from "../firebase/firebase.config";
+import Lottie from "lottie-react";
+import signUpAni from "../assets/image/sign_up-ani.json"
 
 const SignUp = () => {
   const [show, setShow] = useState(false);
@@ -49,10 +52,11 @@ const SignUp = () => {
   }
 
   return (
-    <div className="bg-gray-200 min-h-screen flex flex-col justify-center items-center">
+    <div className="bg-gray-200 min-h-screen flex flex-col md:flex-row justify-center items-center">
       <Helmet>
         <title>Best | Sign Up</title>
       </Helmet>
+      
       <div className="md:w-2/6 bg-gray-50 mx-auto border  rounded shadow-md shadow-gray-300 p-5">
         <h1 className="text-2xl font-medium mb-5 uppercase text-center text-orange-900">
          Sign Up
@@ -78,8 +82,9 @@ const SignUp = () => {
 
             {/* profile image */}
           <div className="mb-5">
-            <label className="block mb-2">
-              Select Profile:
+            <label className="flex gap-2 items-center mb-2">
+            <FaCamera className="text-2xl" />
+              Select Profile: 
             </label>
             <input 
             type="file" 
@@ -160,6 +165,10 @@ const SignUp = () => {
           </p>
           <p className="text-xl text-red-700">{error}</p>
         </form>
+      </div>
+      
+      <div className="w-1/2 hidden md:block">
+        <Lottie animationData={signUpAni} loop={false}></Lottie>
       </div>
     </div>
   );

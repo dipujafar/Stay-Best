@@ -9,6 +9,8 @@ import {
 import { RiLockPasswordLine } from "react-icons/ri";
 import { useState } from "react";
 import useAuth from "../hook/useAuth";
+import Lottie from "lottie-react"
+import loginAni from "../assets/image/login.json"
 
 
 const Login = () => {
@@ -35,12 +37,12 @@ const Login = () => {
 
       };
     return (
-        <div className="bg-gray-200 min-h-screen flex flex-col justify-center items-center">
+        <div className="bg-gray-200 min-h-screen flex flex-col md:flex-row  justify-center items-center">
            <Helmet>
              <title>Best | Login</title>
            </Helmet>
            <div className="md:w-2/6 bg-gray-50 mx-auto border  rounded shadow-md shadow-gray-300 p-5">
-        <h1 className="text-2xl font-medium mb-5 text-center text-sky-400">
+        <h1 className="text-2xl font-medium mb-5 text-center text-orange-900">
           Login
         </h1>
         <form onSubmit={handleSubmit(onSubmit)}>
@@ -54,7 +56,7 @@ const Login = () => {
               {...register("email", { required: true })}
               id=""
               placeholder="Your Email"
-              className="w-3/4 mx-auto py-1 px-2 bg-transparent border-b border-b-sky-400"
+              className="w-3/4 mx-auto py-1 px-2 bg-transparent border-b border-b-orange-900"
             />
           </div>
           {errors.email?.type === "required" && (
@@ -75,7 +77,7 @@ const Login = () => {
               })}
               id=""
               placeholder="Password"
-              className="w-3/4 mx-auto py-1 px-2 bg-transparent border-b border-b-sky-400"
+              className="w-3/4 mx-auto py-1 px-2 bg-transparent border-b border-b-orange-900"
             />
             <span onClick={() => setShow(!show)} className="absolute right-10">
               {show ? (
@@ -98,17 +100,21 @@ const Login = () => {
               Password must less then 20 character.
             </span>
           )}
-          <button className="w-full btn btn-info btn-outline btn-sm">
+          <button className="w-full btn btn-outline btn-sm">
             <input type="submit" value="Login" className="w-full" />
           </button>
           <p className="mt-2">
             Do not have account?{" "}
             <Link to="/signUp">
-              <span className="text-blue-500">Sign Up</span>
+              <span className="text-sky-500">Sign Up</span>
             </Link>
           </p>
           <p className="text-xl text-red-700">{error}</p>
         </form>
+      </div>
+
+      <div className="w-1/2 hidden md:block">
+        <Lottie animationData={loginAni} ></Lottie>
       </div>
         </div>
     );
