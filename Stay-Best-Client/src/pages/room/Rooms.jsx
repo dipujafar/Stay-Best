@@ -2,19 +2,27 @@ import { Helmet } from "react-helmet-async";
 import {
     useQuery,
   } from '@tanstack/react-query'
-import axios from "axios";
 import RoomCard from "./RoomCard";
 import Container from "../../components/shared/Container";
+import useAxiosPublic from "../../hook/useAxiosPublic";
 
 
 const Rooms = () => {
-    const {data: rooms = []} = useQuery({
+    const axiosPublic = useAxiosPublic()
+    const {data: rooms = [], isLoading} = useQuery({
         queryKey: ['Rooms'],
          queryFn: async ()=>{
-            const res = await axios.get('data.json');
+            const res = await axiosPublic.get('/rooms');
             return res?.data;
          }
     });
+
+    if(isLoading){
+        return <div className="flex justify-center items-center h-screen">
+            <span className="loading loading-dots loading-lg text-blue-600"></span>
+        </div>
+    }
+
     return (
         <div className="bg-base-300 min-h-screen">
             <Helmet>
