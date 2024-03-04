@@ -23,7 +23,7 @@ const Rooms = () => {
            </Helmet>
             <Container>
                 <div>
-                    <marquee className="text-3xl uppercase text-orange-900"> Available Room</marquee>
+                    <marquee className="text-3xl uppercase text-orange-900"> Available Rooms</marquee>
                 </div>
            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-2">
             {

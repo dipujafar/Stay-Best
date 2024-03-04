@@ -5,7 +5,7 @@ import { Link } from "react-router-dom";
 
 
 const RoomCard = ({room}) => {
-    const {  image, price_per_night, reviews
+    const {  image, price_per_night, reviews, room_description
     } = room || {}
     return (
         <Link to=''>
@@ -14,9 +14,12 @@ const RoomCard = ({room}) => {
             </Helmet>
         <div className=" card card-compact  bg-base-100 shadow-xl">
             <figure><img src={image} alt="Room_Image" className="h-80 hover:scale-110 duration-500" /></figure>
-            <div className='flex justify-between px-2 mb-2'>
-                <p className='text-xl font-medium'>Price Per Night: ${price_per_night}</p>
+            <div className='px-2 mb-2'>
+                <p className="text-xl font-medium">{room_description}</p>
+                <div className='flex justify-between'>
+                <p>${price_per_night} Per Night</p>
                 <p>Reviews: {reviews.length} </p>
+                </div>
                 </div>
             </div>
         </Link>

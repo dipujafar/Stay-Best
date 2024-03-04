@@ -1,12 +1,16 @@
 import { Outlet } from "react-router-dom";
 import Navbar from "../components/shared/Navbar";
+import Footer from "../components/shared/Footer";
 
 
 const Root = () => {
     return (
         <div>
             <Navbar></Navbar>
-           <Outlet></Outlet>
+            <div className="min-h-[calc(100vh-270px)]">
+            <Outlet></Outlet>
+            </div>
+           <Footer></Footer>
         </div>
     );
 };
