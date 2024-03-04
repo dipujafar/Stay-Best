@@ -8,10 +8,13 @@ import {
 } from "react-icons/ai";
 import { RiLockPasswordLine } from "react-icons/ri";
 import { useState } from "react";
+import useAuth from "../hook/useAuth";
+
 
 const Login = () => {
     const [show, setShow] = useState(false);
     const [error, setError] = useState("");
+    const {signIn} = useAuth()
 
     const {
         register,
@@ -19,9 +22,20 @@ const Login = () => {
         formState: { errors },
       } = useForm();
 
-      const onSubmit = (data) => console.log(data)
+      const onSubmit = (data) => {
+        const {email, password} = data || {};
+
+        signIn(email, password)
+        .then(res=>{
+          console.log(res.user)
+        })
+        .catch(err=>{
+          setError(err.message)
+        })
+
+      };
     return (
-        <div className="bg-gray-200 min-h-screen">
+        <div className="bg-gray-200 min-h-screen flex flex-col justify-center items-center">
            <Helmet>
              <title>Best | Login</title>
            </Helmet>
@@ -89,8 +103,8 @@ const Login = () => {
           </button>
           <p className="mt-2">
             Do not have account?{" "}
-            <Link to="/register">
-              <span className="text-blue-500">Register</span>
+            <Link to="/signUp">
+              <span className="text-blue-500">Sign Up</span>
             </Link>
           </p>
           <p className="text-xl text-red-700">{error}</p>
