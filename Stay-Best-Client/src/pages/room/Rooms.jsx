@@ -15,7 +15,6 @@ const Rooms = () => {
             return res?.data;
          }
     });
-    console.log(rooms)
     return (
         <div className="bg-base-300 min-h-screen">
             <Helmet>
