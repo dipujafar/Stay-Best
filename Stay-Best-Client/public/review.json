@@ -1,0 +1,38 @@
+[
+    {
+        "image": "https://i.ibb.co/R3F7w2d/image2.jpg",
+        "name": "Mohammad Rahman",
+        "review": "Stay Best Hotel surpassed expectations. Luxurious rooms, stunning decor, and a delightful atmosphere make it a top choice for a memorable stay.",
+        "rating": 4.5
+    },
+    {
+        "image": "https://i.ibb.co/dtqTXWv/image1.jpg",
+        "name": "Sadia Islam",
+        "review": "Stay Best Hotel offers a wonderful experience. Beautifully designed rooms and a top-notch ambiance make it a luxurious retreat worth recommending.",
+        "rating": 4.2
+    },
+    {
+        "image": "https://i.ibb.co/2hGP3jj/image5.jpg",
+        "name": "Abdul Aziz",
+        "review": "Stay Best Hotel provides a luxurious stay. Well-appointed rooms and impressive decor make it a nice place for a relaxing getaway.",
+        "rating": 3.0
+    },
+    {
+        "image": "https://i.ibb.co/wgH0hTd/image3.jpg",
+        "name": "Farhana Ahmed",
+        "review": "Stay Best Hotel is fantastic. Beautifully decorated rooms and an ambiance of luxury make it highly recommended for an exquisite stay.",
+        "rating": 4.8
+    },
+    {
+        "image": "https://i.ibb.co/wg4Xm5s/image6.jpg",
+        "name": "Rahim Khan",
+        "review": "Stay Best Hotel is a gem! Exquisite rooms and perfect ambiance make it one of the best places for a luxurious stay.",
+        "rating": 3.6
+    },
+    {
+        "image": "https://i.ibb.co/kcvH9zh/image4.jpg",
+        "name": "Nadia Begum",
+        "review": "Enjoyed my stay at Stay Best Hotel. Beautifully designed rooms and a hotel radiating luxury make it a delightful place for a memorable stay.",
+        "rating": 3
+    }
+]

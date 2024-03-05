@@ -29,6 +29,7 @@ async function run() {
     await client.connect();
 
     const roomCollection = client.db('StayBest').collection('rooms');
+    const reviewCollection = client.db('StayBest').collection('reviews');
 
     // room related apis
     app.get('/rooms', async(req, res)=>{
@@ -41,6 +42,12 @@ async function run() {
         const query = {_id: new ObjectId(id)};
         const result = await roomCollection.findOne(query);
         res.send(result)
+    });
+
+    // reviews related api
+    app.get('/reviews', async(req, res)=>{
+      const result = await reviewCollection.find().toArray();
+      res.send(result)
     })
 
     // Send a ping to confirm a successful connection
