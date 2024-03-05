@@ -18,7 +18,7 @@ const Banner = () => {
 
 
           </p>
-          <Link to={'/rooms'}  className="btn bg-orange-800 text-white">Book Rooms</Link>
+          <Link to={'/rooms'}  className="btn bg-orange-800 text-white uppercase">Book Now</Link>
         </div>
       </div>
     </div>

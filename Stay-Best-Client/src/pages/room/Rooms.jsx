@@ -19,7 +19,7 @@ const Rooms = () => {
 
     if(isLoading){
         return <div className="flex justify-center items-center h-screen">
-            <span className="loading loading-dots loading-lg text-blue-600"></span>
+            <span className="loading loading-dots loading-lg text-orange-600"></span>
         </div>
     }
 
@@ -34,7 +34,7 @@ const Rooms = () => {
                 </div>
            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-2">
             {
-                rooms.map(room=><RoomCard key={room?.room_size} room={room} ></RoomCard>)
+                rooms.map(room=><RoomCard key={room?._id} room={room} ></RoomCard>)
             }
            </div>
            </Container>
