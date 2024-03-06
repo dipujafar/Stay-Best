@@ -4,6 +4,7 @@ import Luxurious from "./Luxurious";
 import Review from "./Review";
 import LocationMap from "./LocationMap";
 import About from "./About";
+import ViewVideo from "./ViewVideo";
 
 
 const Home = () => {
@@ -14,6 +15,7 @@ const Home = () => {
             </Helmet>
             <Banner></Banner>
             <Luxurious></Luxurious>
+            <ViewVideo></ViewVideo>
             <About></About>
             {/* <LocationMap></LocationMap> */}
             <Review></Review>
