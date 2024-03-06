@@ -2,12 +2,15 @@
 import { createContext, useEffect, useState } from "react";
 import {  createUserWithEmailAndPassword, onAuthStateChanged, signInWithEmailAndPassword, signOut } from "firebase/auth";
 import { auth } from "../firebase/firebase.config";
+import useAxiosSecure from "../hook/useAxiosSecure";
+import axios from "axios";
 
 export const AuthContext = createContext(null)
 
 const AuthProvider = ({children}) => {
     const [user, setUser] = useState(null);
     const [loading, setLoading] = useState(true);
+    const axiosSecure = useAxiosSecure
     
 
     const signUp = (email, password)=>{
@@ -30,6 +33,11 @@ const AuthProvider = ({children}) => {
                 if(currentUser){
                     setUser(currentUser);
                     setLoading(false);
+
+                   axios.post("http://localhost:5000/jwt", {email: currentUser?.email},{withCredentials: true})
+                    .then(data=>{
+                        console.log(data.data)
+                    })
                 }
                 else{
                     setUser(null)

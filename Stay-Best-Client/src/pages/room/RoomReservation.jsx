@@ -30,7 +30,7 @@ const RoomReservation = ({roomData}) => {
       email: user?.email
     }
 
-    const res = await axiosPublic.post("http://localhost:5000/books", bookData);
+    const res = await axiosPublic.post("/books", bookData);
     if(res.data.insertedId){
       toast.success("Successfully Booked ")
     }

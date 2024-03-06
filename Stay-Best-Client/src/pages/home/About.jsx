@@ -39,7 +39,7 @@ const About = () => {
             <img
               src={roomPool}
               alt="AboutUsImage"
-              className="absolute  top-32 right-48"
+              className="absolute hidden md:block  top-32 md:right-48"
               data-aos="fade-left"
               data-aos-duration="1500"
             />

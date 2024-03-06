@@ -1,5 +1,6 @@
 /* eslint-disable react/prop-types */
 
+import GuestReview from "./GuestReview";
 import RoomReservation from "./RoomReservation";
 
 const RoomDetailsCard = ({ roomData }) => {
@@ -23,14 +24,17 @@ const RoomDetailsCard = ({ roomData }) => {
               <h2 className="text-3xl text-orange-950">{room_description}</h2>
 
               <p className="text-xl inline">
-               {room_size} sq. ft{" "}
+                {room_size} sq. ft{" "}
                 {special_offers ? (
                   <p className="text-xl inline"> {special_offers}</p>
                 ) : (
                   ""
                 )}
               </p>
-              <p className="text-xl absolute top-0 left-0 rounded-r-full bg-orange-950 text-white px-3 py-1 "> ${price_per_night} Per Night</p>
+              <p className="text-xl absolute top-0 left-0 rounded-r-full bg-orange-950 text-white px-3 py-1 ">
+                {" "}
+                ${price_per_night} Per Night
+              </p>
               {availability ? (
                 <p className="text-xl">Availability: Available</p>
               ) : (
@@ -41,6 +45,16 @@ const RoomDetailsCard = ({ roomData }) => {
               ) : (
                 ""
               )}
+              <div className="mt-5 max-w-[500px] px-5">
+                <h1 className="text-xl">Guest Reviews:</h1>
+                <div className="mt-2">
+                  { roomData?.reviews?.length > 0 ?
+                    <GuestReview roomData={roomData}></GuestReview>
+                    :
+                    <p className="text-2xl mt-5"><marquee> No Reviews </marquee></p>
+                    }
+                </div>
+              </div>
             </div>
             <div>
               <p className="text-xl text-center mb-2">Pike Booking Date </p>

@@ -4,10 +4,16 @@ require('dotenv').config();
 const app = express();
 const port = process.env.PORT || 5000;
 const { MongoClient, ServerApiVersion, ObjectId } = require('mongodb');
+const jwt = require('jsonwebtoken');
+const cookieParser = require('cookie-parser');
 
 //middleware
-app.use(cors());
+app.use(cors({
+  origin: ['http://localhost:5173'],
+  credentials: true
+}));
 app.use(express.json());
+app.use(cookieParser());
 
 
 
@@ -32,6 +38,27 @@ async function run() {
     const reviewCollection = client.db('StayBest').collection('reviews');
     const bookingCollection = client.db('StayBest').collection('booking');
 
+    //jwt related api
+    app.post("/jwt", async(req,res)=>{
+      const user = req.body;
+      try{
+      const token = jwt.sign(user, process.env.ACCESS_TOKEN_SECRET, {
+        expiresIn: '1h'
+      });
+
+      res.cookie("token", token, {
+        httpOnly: true,
+        secure: true,
+        sameSite: 'none'
+      }).send({success: true})
+    }
+    catch{err=>{
+      console.log(err)
+    }
+    }
+
+    })
+
     // room related apis
     app.get('/rooms', async(req, res)=>{
         const result = await roomCollection.find().toArray();
@@ -54,7 +81,8 @@ async function run() {
     // booking related apis
     app.get("/books/:email", async(req,res)=>{
       const  email = req.params.email;
-      const result = await bookingCollection.find().toArray();
+      const query = {email: email}
+      const result = await bookingCollection.find(query).toArray();
       res.send(result);
     })
     app.post("/books", async(req, res)=>{
