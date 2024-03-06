@@ -30,6 +30,7 @@ async function run() {
 
     const roomCollection = client.db('StayBest').collection('rooms');
     const reviewCollection = client.db('StayBest').collection('reviews');
+    const bookingCollection = client.db('StayBest').collection('booking');
 
     // room related apis
     app.get('/rooms', async(req, res)=>{
@@ -48,7 +49,19 @@ async function run() {
     app.get('/reviews', async(req, res)=>{
       const result = await reviewCollection.find().toArray();
       res.send(result)
+    });
+
+    // booking related apis
+    app.get("/books/:email", async(req,res)=>{
+      const  email = req.params.email;
+      const result = await bookingCollection.find().toArray();
+      res.send(result);
     })
+    app.post("/books", async(req, res)=>{
+      const data = req.body;
+      const result = await bookingCollection.insertOne(data);
+      res.send(result);
+    });
 
     // Send a ping to confirm a successful connection
     await client.db("admin").command({ ping: 1 });
