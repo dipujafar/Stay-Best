@@ -15,6 +15,21 @@ app.use(cors({
 app.use(express.json());
 app.use(cookieParser());
 
+const verify = async(req, res, next)=>{
+  const token = req?.cookies?.token;
+  if(!token){
+    return res.status(401).send({message: "Unauthorized Access no token"});
+  }
+
+  jwt.verify(token, process.env.ACCESS_TOKEN_SECRET, (err, decoded)=>{
+    if(err){
+      return res.status(401).send({message: "Unauthorized Access"});
+    }
+    req.user = decoded;
+    next()
+  })
+}
+
 
 
 
@@ -53,10 +68,18 @@ async function run() {
       }).send({success: true})
     }
     catch{err=>{
-      console.log(err)
+     res.send(err);
     }
     }
+    });
 
+    app.post("/logOut", async(req, res)=>{
+      try{
+        res.clearCookie('token', {maxAge: 0}).send({message: "success"});
+      }
+      catch{err=>{
+        res.send(err);
+      }}
     })
 
     // room related apis
@@ -79,11 +102,22 @@ async function run() {
     });
 
     // booking related apis
-    app.get("/books/:email", async(req,res)=>{
+    app.get("/books/:email", verify, async(req,res)=>{
+      try{
       const  email = req.params.email;
+      const userEmail = req?.user?.email;
+      if(email !== userEmail){
+        return res.status(403).send({message: 'forbidden'})
+      }
+
       const query = {email: email}
       const result = await bookingCollection.find(query).toArray();
       res.send(result);
+    }
+
+    catch{err=>
+        res.send(err);
+    }
     })
     app.post("/books", async(req, res)=>{
       const data = req.body;

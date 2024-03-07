@@ -3,14 +3,14 @@ import { createContext, useEffect, useState } from "react";
 import {  createUserWithEmailAndPassword, onAuthStateChanged, signInWithEmailAndPassword, signOut } from "firebase/auth";
 import { auth } from "../firebase/firebase.config";
 import useAxiosSecure from "../hook/useAxiosSecure";
-import axios from "axios";
+
 
 export const AuthContext = createContext(null)
 
 const AuthProvider = ({children}) => {
     const [user, setUser] = useState(null);
     const [loading, setLoading] = useState(true);
-    const axiosSecure = useAxiosSecure
+    const axiosSecure = useAxiosSecure();
     
 
     const signUp = (email, password)=>{
@@ -34,14 +34,19 @@ const AuthProvider = ({children}) => {
                     setUser(currentUser);
                     setLoading(false);
 
-                   axios.post("http://localhost:5000/jwt", {email: currentUser?.email},{withCredentials: true})
+                   axiosSecure.post("/jwt", {email: currentUser?.email})
                     .then(data=>{
                         console.log(data.data)
                     })
                 }
                 else{
-                    setUser(null)
-                    setLoading(false)
+                    setUser(null);
+                    setLoading(false);
+
+                    axiosSecure.post("/logOut",{})
+                    .then(data=>{
+                        console.log(data.data);
+                    })
                 }
             })
             return () => {
