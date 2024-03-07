@@ -10,6 +10,7 @@ import "swiper/css/effect-cards";
 import { EffectCards,  Autoplay } from "swiper/modules";
 import { Rating } from "@smastrom/react-rating";
 import "@smastrom/react-rating/style.css";
+import moment from "moment";
 
 const GuestReview = ({ roomData }) => {
   const { reviews } = roomData;
@@ -39,7 +40,10 @@ const GuestReview = ({ roomData }) => {
                 <p>{review?.email}</p>
                 <p className="text-xl">{review?.comment}</p>
                 <div className="card-actions justify-end">
+                  <div>
+                  <p className="text-end">{moment(review?.timestamp).format("MMM Do YY")}</p>
                 <Rating style={{ maxWidth: 200 }} value={parseInt(review?.rating)}  />
+                </div>
                 </div>
               </div>
             </div>

@@ -13,6 +13,7 @@ import {
 } from '@tanstack/react-query'
 import 'react-date-range/dist/styles.css'
 import 'react-date-range/dist/theme/default.css'
+import '@smastrom/react-rating/style.css'
 
 const queryClient = new QueryClient()
 

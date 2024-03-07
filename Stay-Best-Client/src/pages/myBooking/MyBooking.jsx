@@ -8,7 +8,7 @@ import useAxiosSecure from "../../hook/useAxiosSecure";
 const MyBooking = () => {
     const axiosSecure = useAxiosSecure();
     const {user} = useAuth();
-    const {data: BookRooms = [], isLoading} = useQuery({
+    const {data: BookRooms = [], isLoading, refetch} = useQuery({
         queryKey: ['BookingRooms'],
          queryFn: async ()=>{
             const res = await axiosSecure.get(`/books/${user?.email}`);
@@ -32,7 +32,7 @@ const MyBooking = () => {
             <div className="grid grid-cols-1 gap-5">
                 {
                     BookRooms.length > 0 ?
-                    BookRooms.map(room=><MyBookingCard key={room?._id} room={room}></MyBookingCard>)
+                    BookRooms.map(room=><MyBookingCard key={room?._id} room={room} refetch={refetch}></MyBookingCard>)
                     :
                     <div className="flex justify-center items-center min-h-[calc(100vh-300px)]">
                         <p className=" uppercase text-2xl font-medium">You have no booked room</p>

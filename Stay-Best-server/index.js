@@ -101,6 +101,20 @@ async function run() {
       res.send(result)
     });
 
+    app.put("/reviews",  async(req, res)=>{
+      try{
+        const id = req?.query?.id;
+        const filter = {_id: new ObjectId(id)}
+        const review = req?.body;
+        // const addReview = { $push: {reviews: review}}
+        const result = await roomCollection.updateOne(filter, { $push: { reviews: review } });
+        res.send(result);
+      }
+      catch{err=>{
+        res.send(err);
+      }}
+    })
+
     // booking related apis
     app.get("/books/:email", verify, async(req,res)=>{
       try{
@@ -119,11 +133,19 @@ async function run() {
         res.send(err);
     }
     })
-    app.post("/books", async(req, res)=>{
+
+    app.post("/books",  async(req, res)=>{
       const data = req.body;
       const result = await bookingCollection.insertOne(data);
       res.send(result);
     });
+
+    app.delete("/books/:id", async(req,res)=>{
+      const id = req?.params?.id;
+      const filter = {_id: new ObjectId(id)}
+      const result = await bookingCollection.deleteOne(filter);
+      res.send(result)
+    })
 
     // Send a ping to confirm a successful connection
     await client.db("admin").command({ ping: 1 });
