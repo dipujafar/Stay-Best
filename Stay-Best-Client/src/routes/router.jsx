@@ -29,7 +29,7 @@ import MyBooking from "../pages/myBooking/MyBooking";
         {
           path: "roomDetails/:id",
           element: <PrivateRoute><RoomDetails></RoomDetails></PrivateRoute> ,
-          loader: ({params}) => fetch(`http://localhost:5000/rooms/${params.id}`)
+          loader: ({params}) => fetch(`https://stay-best-server.vercel.app/rooms/${params.id}`)
         },
         {
           path:"myBooking",
