@@ -15,7 +15,6 @@ const MyBooking = () => {
             return res?.data;
          }
     });
-    console.log(BookRooms)
 
     if(isLoading){
         return <div className="flex justify-center items-center h-screen">

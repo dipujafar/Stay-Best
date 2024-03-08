@@ -6,7 +6,6 @@ import Container from "../../components/shared/Container";
 
 const RoomDetails = () => {
     const roomData = useLoaderData();
-    console.log(roomData) 
     return (
         <Container>
            <Helmet>

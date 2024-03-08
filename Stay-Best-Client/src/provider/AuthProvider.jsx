@@ -35,18 +35,14 @@ const AuthProvider = ({children}) => {
                     setLoading(false);
 
                    axiosSecure.post("/jwt", {email: currentUser?.email})
-                    .then(data=>{
-                        console.log(data.data)
-                    })
+                    .then()
                 }
                 else{
                     setUser(null);
                     setLoading(false);
 
                     axiosSecure.post("/logOut",{})
-                    .then(data=>{
-                        console.log(data.data);
-                    })
+                    .then()
                 }
             })
             return () => {

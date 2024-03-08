@@ -9,7 +9,7 @@ const cookieParser = require('cookie-parser');
 
 //middleware
 app.use(cors({
-  origin: ['http://localhost:5173'],
+  origin: ['http://localhost:5173', "https://stay-best-d47fc.web.app"],
   credentials: true
 }));
 app.use(express.json());
@@ -106,8 +106,9 @@ async function run() {
         const id = req?.query?.id;
         const filter = {_id: new ObjectId(id)}
         const review = req?.body;
+        // const options = { upsert: true };
         // const addReview = { $push: {reviews: review}}
-        const result = await roomCollection.updateOne(filter, { $push: { reviews: review } });
+        const result = await roomCollection.updateOne(filter,{$set: { $push: { reviews: review } }});
         res.send(result);
       }
       catch{err=>{
@@ -139,6 +140,30 @@ async function run() {
       const result = await bookingCollection.insertOne(data);
       res.send(result);
     });
+
+    app.put("/books/:id", async(req, res)=>{
+      try{
+      const id = req?.params?.id;
+      const data = req?.body;
+      const filter = {_id : new ObjectId(id)}
+      const options = { upsert: true };
+      const updateData = {
+        $set: {
+          startDate: data?.startDate,
+          endDate: data?.endDate,
+          totalPrice: data?.totalPrice,
+        }
+      }
+
+      const result = await bookingCollection.updateOne(filter, updateData, options);
+
+      res.send(result);
+    }
+
+    catch{err=>{
+      console.log(err)
+    }}
+  })
 
     app.delete("/books/:id", async(req,res)=>{
       const id = req?.params?.id;

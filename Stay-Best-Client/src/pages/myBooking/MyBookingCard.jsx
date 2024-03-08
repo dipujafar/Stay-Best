@@ -4,13 +4,16 @@ import { Rating } from "@smastrom/react-rating";
 import { useRef, useState } from "react";
 import useAuth from "../../hook/useAuth";
 import useAxiosSecure from "../../hook/useAxiosSecure";
-import axios from "axios";
 import { toast } from "react-toastify";
+import DatePicker from "react-datepicker";
+import { formatDistance } from "date-fns";
 
 const MyBookingCard = ({ room, refetch }) => {
   const [rating, setRating] = useState(0);
   const { user } = useAuth();
   const reviewRef = useRef(null);
+  const [updateCheckIn, setUpdateCheckIn] = useState(room?.startDate);
+  const [updateCheckOut, setUpdateCheckOut] = useState(room?.endDate);
   const axiosSecure = useAxiosSecure();
   const {
     _id,
@@ -19,7 +22,8 @@ const MyBookingCard = ({ room, refetch }) => {
     price_per_night,
     room_description,
     startDate,
-    endDate
+    endDate,
+    totalPrice,
   } = room || {};
 
   const handleAddReview = async () => {
@@ -33,22 +37,60 @@ const MyBookingCard = ({ room, refetch }) => {
     };
 
     const res = await axiosSecure.put(`/reviews?id=${roomId}`, reviewData);
-    console.log(res?.data);
+    console.log(res.data);
   };
 
   //cancel functionality
   const handleCancel = async () => {
     const today = moment();
     const checkIn = moment(startDate);
-    if(today.isAfter(checkIn) || today.isSame(checkIn)){
+    if (today.isAfter(checkIn) || today.isSame(checkIn)) {
+      toast.error("Time Over");
+    } else {
+      const res = await axiosSecure.delete(`/books/${_id}`);
+      if (res?.data?.deletedCount > 0) {
+        refetch();
+        toast.success("Successfully Cancel Booking");
+      }
+    }
+  };
+
+  // Room Update Function
+  const handleUpdate = async () => {
+    const today = moment();
+    const checkIn = moment(updateCheckIn);
+    const checkOut = moment(updateCheckOut);
+    const oldCheckIn = moment(startDate);
+    let totalDays = parseInt(formatDistance(new Date(updateCheckIn), new Date(updateCheckOut)).split(" ")[0])
+    let updateTotalPrice = totalDays *parseInt(price_per_night);
+
+   
+    if (oldCheckIn.isBefore(checkIn)) {
       toast.error("Time Over");
     }
+
+    else if(checkIn.isBefore(today)){
+      toast.error("Time Invalid");
+    }
+
+    else if (checkOut.isBefore(checkIn)){
+      toast.error("Please set checkout date after checkIn date")
+    }
+
     else{
-      const res = await axiosSecure.delete(`/books/${_id}`);
-      if(res?.data?.deletedCount > 0){
-        refetch()
-        toast.success("Successfully Cancel Booking")
+      const updateBooking = {
+        startDate: updateCheckIn,
+        endDate: updateCheckOut,
+        totalPrice: updateTotalPrice
       }
+
+      const res = await axiosSecure.put(`/books/${_id}`, updateBooking)
+      if(res?.data?.modifiedCount){
+        toast.success("Successfully Update Your Booking");
+        refetch();
+      }
+      updateTotalPrice = 0
+      totalDays = 0
     }
   };
   return (
@@ -72,11 +114,12 @@ const MyBookingCard = ({ room, refetch }) => {
               {moment(endDate).format("MMMM Do YYYY, h:mm:ss a")}{" "}
             </p>
             <p className="text-lg">
-              <span className="text-orange-900">Price Per Night</span>:{" "}
+              <span className="text-orange-900">Price Per Night</span>: $
               {price_per_night}{" "}
             </p>
             <p className="text-lg">
-              <span className="text-orange-900">Total Price</span>:{" "}
+              <span className="text-orange-900">Total Price</span>: $
+              {totalPrice}
             </p>
           </div>
           <div className="card-actions justify-end">
@@ -133,7 +176,57 @@ const MyBookingCard = ({ room, refetch }) => {
                   </div>
                 </div>
               </dialog>
-              <button className="btn btn-outline">Update</button>
+
+              {/* Update Date */}
+              {/* Open the modal using document.getElementById('ID').showModal() method */}
+              <button
+                className="btn btn-outline"
+                onClick={() =>
+                  document.getElementById("my_modal_1").showModal()
+                }
+              >
+                Update
+              </button>
+              <dialog
+                id="my_modal_1"
+                className="modal modal-bottom sm:modal-middle"
+              >
+                <div className="modal-box bg-base-200">
+                  <div>
+                    <label>Update Check In : </label>
+                    <DatePicker
+                      selected={updateCheckIn}
+                      onChange={(date) => setUpdateCheckIn(date)}
+                      className="text-center border border-black mb-2"
+                    />
+                  </div>
+                  <div>
+                    <label>Update Check Out: </label>
+                    <DatePicker
+                      selected={updateCheckOut}
+                      onChange={(date) => setUpdateCheckOut(date)}
+                      className="text-center border border-black"
+                    />
+                  </div>
+
+                  <div className="modal-action">
+                    <form method="dialog">
+                      {/* if there is a button in form, it will close the modal */}
+                      <button
+                        onClick={handleUpdate}
+                        className="btn btn-outline mr-2"
+                      >
+                        Confirm
+                      </button>
+                      <button className="btn btn-error btn-outline">
+                        Close
+                      </button>
+                    </form>
+                  </div>
+                </div>
+              </dialog>
+
+              {/* cancel booking */}
               <button
                 onClick={handleCancel}
                 className="btn btn-outline btn-error"

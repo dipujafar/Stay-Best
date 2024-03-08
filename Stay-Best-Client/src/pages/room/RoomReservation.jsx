@@ -6,6 +6,7 @@ import useAuth from "../../hook/useAuth";
 import { toast } from "react-toastify";
 import moment from "moment";
 import { useNavigate } from "react-router-dom";
+import { formatDistance } from "date-fns";
 // eslint-disable-next-line react/prop-types
 const RoomReservation = ({ roomData }) => {
   const [enable, setEnable] = useState(false);
@@ -19,6 +20,9 @@ const RoomReservation = ({ roomData }) => {
     key: "selection",
   });
 
+  const totalDays = parseInt(formatDistance(new Date(date?.startDate), new Date(date?.endDate)).split(" ")[0])
+  const totalPrice = totalDays * roomData?.price_per_night;
+
   const handleBook = async () => {
     const { startDate, endDate } = date || {};
     const { _id, image, price_per_night, room_description } = roomData || {};
@@ -31,6 +35,7 @@ const RoomReservation = ({ roomData }) => {
       startDate,
       endDate,
       email: user?.email,
+      totalPrice
     };
       const checkIn = moment(startDate);
       const today = moment();
@@ -49,7 +54,6 @@ const RoomReservation = ({ roomData }) => {
   };
 
   const handleSelect = (ranges) => {
-    console.log(ranges);
 
     setdate({
       startDate: ranges?.selection?.startDate,
@@ -79,7 +83,7 @@ const RoomReservation = ({ roomData }) => {
                 id="my_modal_5"
                 className="modal modal-bottom sm:modal-middle"
               >
-                <div className="modal-box">
+                <div className="modal-box bg-base-300">
                   <h3 className="font-bold text-xl text-center text-orange-950">
                     Booking Summary
                   </h3>
@@ -89,7 +93,7 @@ const RoomReservation = ({ roomData }) => {
                   <p className=" pt-2 text-lg">
                     Price Per Night : ${roomData?.price_per_night}
                   </p>
-                  <p className="text-lg">Total Price : --</p>
+                  <p className="text-lg">Total Price : ${totalPrice}</p>
                   <p className="text-lg">Check In Date : {moment(date?.startDate).format('MMMM Do YYYY, h:mm:ss a')}</p>
                   <p className="text-lg">Check Out Date : {moment(date?.endDate).format('MMMM Do YYYY, h:mm:ss a')}</p>
                   <div className="modal-action">

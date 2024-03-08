@@ -33,7 +33,6 @@ const SignUp = () => {
     const {name, image, email, password} = data || {};
     const imageFile = image[0];
     const imageData = await imageUpload(imageFile);
-    console.log(imageData?.data?.url);
 
     setError('')
     signUp(email, password)
