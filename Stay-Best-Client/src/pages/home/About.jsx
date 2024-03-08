@@ -4,6 +4,7 @@ import room5 from "../../assets/roomImg/room5.jpg";
 import Aos from "aos";
 import "aos/dist/aos.css";
 import { useEffect } from "react";
+import { Link } from "react-router-dom";
 
 const About = () => {
   useEffect(() => {
@@ -27,6 +28,8 @@ const About = () => {
               surroundings and experience the epitome of luxury, where every
               detail is meticulously curated for an unforgettable stay.
             </p>
+           
+            <Link> <p className="">See More ..... </p></Link>
           </div>
           <div className="relative">
             <img

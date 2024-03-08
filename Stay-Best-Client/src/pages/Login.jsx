@@ -12,12 +12,13 @@ import useAuth from "../hook/useAuth";
 import Lottie from "lottie-react"
 import loginAni from "../assets/image/login.json"
 import { toast } from "react-toastify";
+import googleImg from '../assets/image/google.png'
 
 
 const Login = () => {
     const [show, setShow] = useState(false);
     const [error, setError] = useState("");
-    const {signIn} = useAuth();
+    const {signIn,  singInWithGoogle} = useAuth();
     const navigate = useNavigate();
     const location = useLocation();
 
@@ -38,8 +39,18 @@ const Login = () => {
         .catch(err=>{
           setError(err.message)
         })
-
       };
+
+      const handleGoogleSing = () =>{
+        singInWithGoogle()
+      .then(() => {
+        toast.success("Success Login with Google");
+        navigate(location?.state ? location.state : "/");
+      })
+      .catch((error) => {
+        setError(error.message);
+      });
+      }
     return (
         <div className="bg-gray-200 min-h-screen flex flex-col md:flex-row  justify-center items-center">
            <Helmet>
@@ -115,6 +126,14 @@ const Login = () => {
           </p>
           <p className="text-xl text-red-700">{error}</p>
         </form>
+        <fieldset className="mt-5 border rounded border-orange-900 p-2">
+            <legend className="text-center text-xl text-orange-900">
+              LOGIN WITH
+            </legend>
+            <p onClick={handleGoogleSing} className="flex justify-center item-center">
+              <img src={googleImg} alt="" className="w-10" />
+            </p>
+          </fieldset>
       </div>
 
       <div className="w-1/2 hidden md:block">

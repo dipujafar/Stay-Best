@@ -28,7 +28,7 @@ const RoomDetailsCard = ({ roomData }) => {
     <div>
       <div className="card  card-compact bg-base-200 shadow-xl relative">
         <figure>
-          <img src={image} alt="Rooms_image" className="max-h-96 w-full" />
+          <img src={image[0]} alt="Rooms_image" className="max-h-96 w-full" />
         </figure>
         <div className="card-body">
           <div className="lg:flex justify-between">

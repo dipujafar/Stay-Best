@@ -30,7 +30,7 @@ const GuestReview = ({ roomData, comment }) => {
             <div className="card max-w-96 bg-base-100 shadow-xl image-full">
               <figure>
                 <img
-                  src={roomData?.image}
+                  src={roomData?.image[0]}
                   alt="Shoes"
                 />
               </figure>
