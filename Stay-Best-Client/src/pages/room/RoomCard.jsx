@@ -2,11 +2,23 @@
 
 import { Helmet } from "react-helmet-async";
 import { Link } from "react-router-dom";
+import {
+    useQuery,
+  } from '@tanstack/react-query'
+import useAxiosPublic from "../../hook/useAxiosPublic";
 
 
 const RoomCard = ({room}) => {
-    const {  _id, image, price_per_night, reviews, room_description
+    const axiosPublic = useAxiosPublic()
+    const {  _id, image, price_per_night,  room_description
     } = room || {}
+    const {data: comment = []} = useQuery({
+        queryKey: ['comment', _id],
+         queryFn: async ()=>{
+            const res = await axiosPublic.get(`/comment/${_id}`);
+            return res?.data;
+         }
+    });
     return (
         <Link to={`/roomDetails/${_id}`}>
             <Helmet>
@@ -18,7 +30,7 @@ const RoomCard = ({room}) => {
                 <p className="text-xl font-medium text-orange-950">{room_description}</p>
                 <div className='flex justify-between'>
                 <p>${price_per_night} Per Night</p>
-                <p>Reviews: {reviews?.length} </p>
+                <p>Reviews: {comment?.length} </p>
                 </div>
                 </div>
             </div>

@@ -7,6 +7,7 @@ import useAxiosSecure from "../../hook/useAxiosSecure";
 import { toast } from "react-toastify";
 import DatePicker from "react-datepicker";
 import { formatDistance } from "date-fns";
+import Swal from 'sweetalert2'
 
 const MyBookingCard = ({ room, refetch }) => {
   const [rating, setRating] = useState(0);
@@ -34,10 +35,13 @@ const MyBookingCard = ({ room, refetch }) => {
       comment,
       email: user?.email,
       timestamp: new Date(),
+      roomId
     };
 
-    const res = await axiosSecure.put(`/reviews?id=${roomId}`, reviewData);
-    console.log(res.data);
+    const res = await axiosSecure.post("/comment", reviewData);
+    if(res?.data?.insertedId){
+      toast.success("Thanks for your review")
+    }
   };
 
   //cancel functionality
@@ -47,11 +51,26 @@ const MyBookingCard = ({ room, refetch }) => {
     if (today.isAfter(checkIn) || today.isSame(checkIn)) {
       toast.error("Time Over");
     } else {
-      const res = await axiosSecure.delete(`/books/${_id}`);
-      if (res?.data?.deletedCount > 0) {
-        refetch();
-        toast.success("Successfully Cancel Booking");
-      }
+      Swal.fire({
+        title: "Are you sure?",
+        text: "You won't be cancel this booking!",
+        icon: "warning",
+        showCancelButton: true,
+        confirmButtonColor: "#3085d6",
+        cancelButtonColor: "#d33",
+        confirmButtonText: "Yes, Cancel Booking"
+      }).then(async (result) => {
+        if (result.isConfirmed) {
+          const res = await axiosSecure.delete(`/books/${_id}`);
+          if (res?.data?.deletedCount > 0) {
+            refetch();
+            toast.success("Successfully Cancel Booking");
+          }
+        }
+      });
+
+
+     
     }
   };
 

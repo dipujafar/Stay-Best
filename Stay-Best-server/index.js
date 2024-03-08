@@ -52,6 +52,7 @@ async function run() {
     const roomCollection = client.db('StayBest').collection('rooms');
     const reviewCollection = client.db('StayBest').collection('reviews');
     const bookingCollection = client.db('StayBest').collection('booking');
+    const commentCollection = client.db('StayBest').collection('comment');
 
     //jwt related api
     app.post("/jwt", async(req,res)=>{
@@ -101,19 +102,10 @@ async function run() {
       res.send(result)
     });
 
-    app.put("/reviews",  async(req, res)=>{
-      try{
-        const id = req?.query?.id;
-        const filter = {_id: new ObjectId(id)}
-        const review = req?.body;
-        // const options = { upsert: true };
-        // const addReview = { $push: {reviews: review}}
-        const result = await roomCollection.updateOne(filter,{$set: { $push: { reviews: review } }});
-        res.send(result);
-      }
-      catch{err=>{
-        res.send(err);
-      }}
+    app.post("/comment", async(req, res)=>{
+      const comment = req.body;
+      const result = await commentCollection.insertOne(comment);
+      res.send(result);
     })
 
     // booking related apis
@@ -170,6 +162,21 @@ async function run() {
       const filter = {_id: new ObjectId(id)}
       const result = await bookingCollection.deleteOne(filter);
       res.send(result)
+    })
+
+    //comment related
+    app.get("/comment/:id", async(req, res)=>{
+      try{
+        const id = req?.params?.id;
+        const filter = {roomId: id} 
+        const result = await commentCollection.find(filter).toArray();
+        res.send(result);
+      }
+      catch{err=>{
+        res.send(err)
+      }
+
+      }
     })
 
     // Send a ping to confirm a successful connection

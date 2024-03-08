@@ -1,10 +1,14 @@
 /* eslint-disable react/prop-types */
 
+import { useQuery } from "@tanstack/react-query";
+import useAxiosPublic from "../../hook/useAxiosPublic";
 import GuestReview from "./GuestReview";
 import RoomReservation from "./RoomReservation";
 
 const RoomDetailsCard = ({ roomData }) => {
+  const axiosPublic = useAxiosPublic()
   const {
+    _id,
     image,
     price_per_night,
     room_description,
@@ -12,6 +16,14 @@ const RoomDetailsCard = ({ roomData }) => {
     availability,
     special_offers,
   } = roomData || {};
+
+  const {data: comment = []} = useQuery({
+    queryKey: ['commentView'],
+     queryFn: async ()=>{
+        const res = await axiosPublic.get(`/comment/${_id}`);
+        return res?.data;
+     }
+});
   return (
     <div>
       <div className="card  card-compact bg-base-200 shadow-xl relative">
@@ -48,8 +60,8 @@ const RoomDetailsCard = ({ roomData }) => {
               <div className="mt-5 max-w-[500px] px-5">
                 <h1 className="text-xl">Guest Reviews:</h1>
                 <div className="mt-2">
-                  { roomData?.reviews?.length > 0 ?
-                    <GuestReview roomData={roomData}></GuestReview>
+                  { comment?.length > 0 ?
+                    <GuestReview roomData={roomData} comment={comment}></GuestReview>
                     :
                     <p className="text-2xl mt-5"><marquee> No Reviews </marquee></p>
                     }

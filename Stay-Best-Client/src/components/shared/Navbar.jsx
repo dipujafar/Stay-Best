@@ -48,6 +48,16 @@ const Navbar = () => {
          My Booking
         </NavLink>
       </li>
+      <li className="uppercase border-2 border-orange-900 rounded-full mr-2 text-orange-800">
+      <NavLink
+          to="/contract"
+          className={({ isActive, isPending }) =>
+            isPending ? "pending" : isActive ? "text-red-600" : ""
+          }
+        >
+         Contract Us
+        </NavLink>
+      </li>
     </>
   );
 

@@ -5,23 +5,7 @@
     "room_description": "Deluxe King Suite with Ocean View",
     "room_size": 450,
     "availability": true,
-    "special_offers": "10% off for a 3-night stay",
-    "reviews": [
-      {
-        "user": "John Doe",
-        "rating": 4.5,
-        "comment": "Beautiful room with a stunning view!",
-        "timestamp": "2024-03-07T12:00:00Z",
-        "email": "john@gmail.com"
-      },
-      {
-        "user": "Jane Smith",
-        "rating": 5.0,
-        "comment": "Absolutely amazing. Will stay here again.",
-        "timestamp": "2024-03-07T12:30:00Z",
-        "email": "jane@gmail.com"
-      }
-    ]
+    "special_offers": "10% off for a 3-night stay"
   },
   {
     "image": "https://i.ibb.co/dcRv8Bj/bedroom-1285156-1280.jpg",
@@ -29,8 +13,7 @@
     "room_description": "Cozy Queen Room",
     "room_size": 300,
     "availability": true,
-    "special_offers": "Free breakfast included",
-    "reviews": []
+    "special_offers": "Free breakfast included"
   },
   {
     "image": "https://i.ibb.co/pdsB2fB/bride-301816-640.jpg",
@@ -38,23 +21,7 @@
     "room_description": "Luxury Penthouse Suite",
     "room_size": 800,
     "availability": true,
-    "special_offers": "N/A",
-    "reviews": [
-      {
-        "user": "Eleanor Davis",
-        "rating": 5.0,
-        "comment": "An unforgettable experience.",
-        "timestamp": "2024-03-07T13:15:00Z",
-        "email": "eleanor@gmail.com"
-      },
-      {
-        "user": "Michael Clark",
-        "rating": 4.8,
-        "comment": "Worth every penny.",
-        "timestamp": "2024-03-07T13:45:00Z",
-        "email": "michael@gmail.com"
-      }
-    ]
+    "special_offers": "N/A"
   },
   {
     "image": "https://i.ibb.co/ypwpp0v/hotel-1979406-1280.jpg",
@@ -62,31 +29,14 @@
     "room_description": "Standard Double Room",
     "room_size": 250,
     "availability": true,
-    "special_offers": "15% off for a 7-night stay",
-    "reviews": [
-      {
-        "user": "Grace Baker",
-        "rating": 3.2,
-        "comment": "Decent room for a short stay.",
-        "timestamp": "2024-03-07T14:30:00Z",
-        "email": "grace@gmail.com"
-      },
-      {
-        "user": "David Miller",
-        "rating": 4.0,
-        "comment": "Good value for the price.",
-        "timestamp": "2024-03-07T15:00:00Z",
-        "email": "david@gmail.com"
-      }
-    ]
+    "special_offers": "15% off for a 7-night stay"
   },
   {
     "image": "https://i.ibb.co/ZhSWMGP/istockphoto-627892060-1024x1024.jpg",
     "price_per_night": 180,
     "room_description": "Executive Suite with City View",
     "room_size": 600,
-    "availability": true,
-    "reviews": []
+    "availability": true
   },
   {
     "image": "https://i.ibb.co/8xYh5HV/istockphoto-1130082073-1024x1024.jpg",
@@ -94,23 +44,7 @@
     "room_description": "Family Suite with Garden View",
     "room_size": 400,
     "availability": true,
-    "special_offers": "20% off for children under 12",
-    "reviews": [
-      {
-        "user": "Sophia Lee",
-        "rating": 4.2,
-        "comment": "A comfortable family-friendly room.",
-        "timestamp": "2024-03-07T16:45:00Z",
-        "email": "sophia@gmail.com"
-      },
-      {
-        "user": "Liam Harris",
-        "rating": 4.0,
-        "comment": "Good for a family vacation.",
-        "timestamp": "2024-03-07T17:15:00Z",
-        "email": "liam@gmail.com"
-      }
-    ]
+    "special_offers": "20% off for children under 12"
   },
   {
     "image": "https://i.ibb.co/Qk14Z0V/istockphoto-1130082067-1024x1024.jpg",
@@ -118,69 +52,21 @@
     "room_description": "Business Suite with Workspace",
     "room_size": 350,
     "availability": true,
-    "special_offers": "Free Wi-Fi included",
-    "reviews": [
-      {
-        "user": "Mia Anderson",
-        "rating": 4.6,
-        "comment": "Perfect for a work trip.",
-        "timestamp": "2024-03-07T18:00:00Z",
-        "email": "miand@gmail.com"
-      },
-      {
-        "user": "Noah King",
-        "rating": 4.4,
-        "comment": "Convenient for business travelers.",
-        "timestamp": "2024-03-07T18:30:00Z",
-        "email": "noah@gmail.com"
-      }
-    ]
+    "special_offers": "Free Wi-Fi included"
   },
   {
     "image": "https://i.ibb.co/dsZv2VV/room-2269594-1280.jpg",
     "price_per_night": 110,
     "room_description": "Deluxe Twin Room with Balcony",
     "room_size": 320,
-    "availability": true,
-    "reviews": [
-      {
-        "user": "Ava Turner",
-        "rating": 3.8,
-        "comment": "Nice room with a view.",
-        "timestamp": "2024-03-07T19:15:00Z",
-        "email": "ava@gmail.com"
-      },
-      {
-        "user": "William Hall",
-        "rating": 4.2,
-        "comment": "A good stay for the price.",
-        "timestamp": "2024-03-07T19:45:00Z",
-        "email": "william@gmail.com"
-      }
-    ]
+    "availability": true
   },
   {
     "image": "https://i.ibb.co/kcZzY5w/window-3178666-640.jpg",
     "price_per_night": 250,
     "room_description": "Presidential Suite with Private Pool",
     "room_size": 1000,
-    "availability": true,
-    "reviews": [
-      {
-        "user": "Chloe White",
-        "rating": 5.0,
-        "comment": "A truly luxurious experience.",
-        "timestamp": "2024-03-07T20:30:00Z",
-        "email": "chloe@gmail.com"
-      },
-      {
-        "user": "Henry Allen",
-        "rating": 4.9,
-        "comment": "The best suite I've ever stayed in.",
-        "timestamp": "2024-03-07T21:00:00Z",
-        "email": "heney@gmail.com"
-      }
-    ]
+    "availability": true
   },
   {
     "image": "https://i.ibb.co/JrGbbxQ/travel-1677347-640.jpg",
@@ -188,7 +74,6 @@
     "room_description": "Economy Single Room",
     "room_size": 180,
     "availability": true ,
-    "special_offers": "5% off for advance bookings",
-    "reviews": []
+    "special_offers": "5% off for advance bookings"
   }
 ]

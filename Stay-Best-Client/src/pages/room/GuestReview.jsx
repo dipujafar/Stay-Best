@@ -12,8 +12,7 @@ import { Rating } from "@smastrom/react-rating";
 import "@smastrom/react-rating/style.css";
 import moment from "moment";
 
-const GuestReview = ({ roomData }) => {
-  const { reviews } = roomData;
+const GuestReview = ({ roomData, comment }) => {
   return (
     <div>
       <Swiper
@@ -26,7 +25,7 @@ const GuestReview = ({ roomData }) => {
         modules={[EffectCards,  Autoplay]}
         className="mySwiper"
       >
-        {reviews?.map((review, inx) => (
+        {comment?.map((review, inx) => (
           <SwiperSlide key={inx}>
             <div className="card max-w-96 bg-base-100 shadow-xl image-full">
               <figure>
