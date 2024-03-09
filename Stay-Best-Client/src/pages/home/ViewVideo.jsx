@@ -1,5 +1,4 @@
 import ViewVideoFile from '../../assets/Video/view.mp4'
-import ReactPlayer from 'react-player'
 import Container from '../../components/shared/Container';
 
 const ViewVideo = () => {
@@ -10,7 +9,7 @@ const ViewVideo = () => {
                 <h1 className='text-3xl text-orange-800 uppercase font-medium'>Our Room View</h1>
             </div>
         <div>
-            <ReactPlayer url={ViewVideoFile} controls={true}   width="100%" ></ReactPlayer>
+            <video src={ViewVideoFile} autoPlay loop muted  className='max-h-[350px] w-full '></video>
         </div>
         </Container>
         </div>

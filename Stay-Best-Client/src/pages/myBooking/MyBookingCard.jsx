@@ -116,7 +116,7 @@ const MyBookingCard = ({ room, refetch }) => {
     <div>
       <div className="card lg:card-side bg-base-200 shadow-xl">
         <figure className="lg:w-1/2">
-          <img src={image} alt="Album" className="max-h-[400px] w-full" />
+          <img src={image} alt="Album" className="max-h-[350px] w-full" />
         </figure>
         <div className="card-body">
           <div>

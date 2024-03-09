@@ -11,6 +11,7 @@ import { Helmet } from "react-helmet-async";
 import { Link } from "react-router-dom";
 import { useQuery } from "@tanstack/react-query";
 import useAxiosPublic from "../../hook/useAxiosPublic";
+import { IoMdPhotos } from "react-icons/io";
 
 const RoomCard = ({ room }) => {
   const axiosPublic = useAxiosPublic();
@@ -28,17 +29,18 @@ const RoomCard = ({ room }) => {
       <Helmet>
         <title>Rooms</title>
       </Helmet>
-      <div className="group card card-compact  bg-base-100 shadow-xl">
-        <figure>
-          <Swiper navigation={true}  autoplay={{
-            delay: 3000,
-            disableOnInteraction: true,
-          }} modules={[Navigation, Autoplay]} className="mySwiper">
+      <div className="group card card-compact  bg-base-100 shadow-xl ">
+        <figure className="relative">
+          <Swiper navigation={true}   modules={[Navigation, Autoplay]} className="mySwiper">
             {
-                image?.map((img,inx)=><SwiperSlide key={inx}><img src={img} alt="roomImg" className="max-h-64 w-full group-hover:scale-110 duration-1000"></img></SwiperSlide>)
+                image?.map((img,inx)=><SwiperSlide key={inx}><img src={img} alt="roomImg" className="h-64 w-full group-hover:scale-125 duration-1000"></img></SwiperSlide>)
             }
             
           </Swiper>
+          <div className="z-10 absolute bg-gray-600 py-2 px-2 rounded-2xl bottom-2 right-2 text-white flex items-center gap-2">
+          <IoMdPhotos />
+            <p>{image?.length}</p>
+          </div>
         </figure>
         <div className="px-2 mb-2">
           <p className="text-xl font-medium text-orange-950">
@@ -49,6 +51,7 @@ const RoomCard = ({ room }) => {
             <p>Reviews: {comment?.length} </p>
           </div>
         </div>
+       
       </div>
     </Link>
   );
