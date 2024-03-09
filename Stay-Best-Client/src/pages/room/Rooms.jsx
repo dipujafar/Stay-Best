@@ -1,10 +1,12 @@
 import { Helmet } from "react-helmet-async";
+import roomPool from "../../assets/roomImg/roomPool.jpeg";
 import {
     useQuery,
   } from '@tanstack/react-query'
 import RoomCard from "./RoomCard";
 import Container from "../../components/shared/Container";
 import useAxiosPublic from "../../hook/useAxiosPublic";
+import TopBanner from "../../components/shared/TopBanner";
 
 
 const Rooms = () => {
@@ -28,11 +30,9 @@ const Rooms = () => {
             <Helmet>
              <title>Stay Best | Rooms</title>
            </Helmet>
+           <TopBanner bgImage={roomPool} title={" Available Rooms"}></TopBanner>
             <Container>
-                <div>
-                    <marquee className="text-3xl uppercase text-orange-900"> Available Rooms</marquee>
-                </div>
-           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-2">
+           <div className="mt-5 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-2">
             {
                 rooms.map(room=><RoomCard key={room?._id} room={room} ></RoomCard>)
             }

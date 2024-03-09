@@ -10,7 +10,7 @@ import ErrorPage from "../pages/ErrorPage";
 import RoomDetails from "../pages/room/RoomDetails";
 import PrivateRoute from "./PrivateRoute";
 import MyBooking from "../pages/myBooking/MyBooking";
-import ContractUs from "../pages/ContractUs";
+import Contract from "../pages/contract/Contract";
 
 
   const router = createBrowserRouter([
@@ -38,7 +38,7 @@ import ContractUs from "../pages/ContractUs";
         },
         {
           path: "contract",
-          element: <ContractUs></ContractUs>
+          element: <Contract></Contract>
         }
       ]
     },

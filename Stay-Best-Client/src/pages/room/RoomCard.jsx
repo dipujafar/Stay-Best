@@ -37,7 +37,7 @@ const RoomCard = ({ room }) => {
             }
             
           </Swiper>
-          <div className="z-10 absolute bg-gray-600 py-2 px-2 rounded-2xl bottom-2 right-2 text-white flex items-center gap-2">
+          <div className="z-10 absolute bg-gray-600 py-1 px-2 rounded bottom-2 right-2 text-white flex items-center gap-2">
           <IoMdPhotos />
             <p>{image?.length}</p>
           </div>
