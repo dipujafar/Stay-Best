@@ -58,7 +58,7 @@ const RoomDetailsCard = ({ roomData }) => {
                 ""
               )}
               <div className="mt-5 max-w-[500px] px-5">
-                <h1 className="text-xl">Guest Reviews:</h1>
+                <h1 className="text-xl">Guest Reviews</h1>
                 <div className="mt-2">
                   { comment?.length > 0 ?
                     <GuestReview roomData={roomData} comment={comment}></GuestReview>
@@ -69,7 +69,7 @@ const RoomDetailsCard = ({ roomData }) => {
               </div>
             </div>
             <div>
-              <p className="text-xl text-center mb-2">Pike Booking Date </p>
+              <p className="text-xl text-center my-2">Pike checkIn and checkout date  </p>
               <div className="overflow-auto">
                 {" "}
                 <RoomReservation roomData={roomData}></RoomReservation>
