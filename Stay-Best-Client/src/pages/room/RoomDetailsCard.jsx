@@ -33,7 +33,7 @@ const RoomDetailsCard = ({ roomData }) => {
         <div className="card-body">
           <div className="lg:flex justify-between">
             <div>
-              <h2 className="text-3xl text-orange-950">{room_description}</h2>
+              <h2 className="text-3xl text-orange-900">{room_description}</h2>
 
               <p className="text-xl inline">
                 {room_size} sq. ft{" "}

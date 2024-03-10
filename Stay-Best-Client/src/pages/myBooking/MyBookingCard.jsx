@@ -120,7 +120,7 @@ const MyBookingCard = ({ room, refetch }) => {
         </figure>
         <div className="card-body">
           <div>
-            <h2 className="text-2xl text-orange-950 font-medium">
+            <h2 className="text-2xl text-orange-900 font-medium">
               {room_description}
             </h2>
             <p></p>

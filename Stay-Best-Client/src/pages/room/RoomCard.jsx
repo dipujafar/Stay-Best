@@ -43,7 +43,7 @@ const RoomCard = ({ room }) => {
           </div>
         </figure>
         <div className="px-2 mb-2">
-          <p className="text-xl font-medium text-orange-950">
+          <p className="text-xl font-medium text-orange-900">
             {room_description}
           </p>
           <div className="flex justify-between">

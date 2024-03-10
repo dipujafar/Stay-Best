@@ -84,10 +84,10 @@ const RoomReservation = ({ roomData }) => {
                 className="modal modal-bottom sm:modal-middle"
               >
                 <div className="modal-box bg-base-300">
-                  <h3 className="font-bold text-xl text-center text-orange-950">
+                  <h3 className="font-bold text-xl text-center text-orange-900">
                     Booking Summary
                   </h3>
-                  <h3 className="font-bold text-lg text-orange-950">
+                  <h3 className="font-bold text-lg text-orange-900">
                     {roomData?.room_description}
                   </h3>
                   <p className=" pt-2 text-lg">

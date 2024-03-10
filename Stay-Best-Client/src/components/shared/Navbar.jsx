@@ -89,7 +89,7 @@ const Navbar = () => {
               </div>
               <ul
                 tabIndex={0}
-                className="menu menu-sm dropdown-content mt-3 z-[1] p-2 shadow bg-base-100 rounded-box w-52"
+                className="menu menu-sm dropdown-content mt-3 z-[1] p-2 shadow bg-base-100 rounded-box w-52 gap-1"
               >
                 {navLinks}
               </ul>
@@ -99,7 +99,7 @@ const Navbar = () => {
               className="btn btn-ghost text-xl uppercase text-orange-700"
             >
               <div className="flex gap-2 justify-center items-center">
-                <img src={logo} alt="logo_Image" className="w-10" />
+                <img src={logo} alt="logo_Image" className="w-7 md:w-10" />
                 Stay <span className="text-orange-900"> Best </span>
               </div>
             </Link>
