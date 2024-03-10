@@ -18,7 +18,7 @@ const Banner = () => {
 
 
           </p>
-          <Link to={'/rooms'}  className="btn bg-orange-800 text-white uppercase">Book Now</Link>
+          <Link to={'/rooms'}  className="btn bg-gradient-to-r from-orange-700 to-orange-950 text-white uppercase">Book Now</Link>
         </div>
       </div>
     </div>
