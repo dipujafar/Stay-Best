@@ -113,7 +113,7 @@ const SignUp = () => {
               {...register("email", { required: true })}
               id=""
               placeholder="Your Email"
-              className="w-3/4 mx-auto py-1 px-2 bg-transparent border-b border-b-orange-900"
+              className="w-3/4 mx-auto py-1 px-2 bg-transparent border-b border-b-orange-950"
             />
           </div>
           {errors.email?.type === "required" && (

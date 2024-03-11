@@ -2,7 +2,6 @@ import { Helmet } from "react-helmet-async";
 import Banner from "./Banner";
 import Luxurious from "./Luxurious";
 import Review from "./Review";
-import LocationMap from "./LocationMap";
 import About from "./About";
 import ViewVideo from "./ViewVideo";
 
@@ -14,8 +13,8 @@ const Home = () => {
                 <title>Stay Best | Home</title>
             </Helmet>
             <Banner></Banner>
-            <Luxurious></Luxurious>
             <ViewVideo></ViewVideo>
+            <Luxurious></Luxurious>
             <About></About>
             {/* <LocationMap></LocationMap> */}
             <Review></Review>

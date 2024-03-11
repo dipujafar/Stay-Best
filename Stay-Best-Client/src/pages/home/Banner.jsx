@@ -4,7 +4,7 @@ import bannerImg from "../../assets/image/banner.jpg";
 const Banner = () => {
   return (
     <div
-      className="hero min-h-screen bg-fixed"
+      className="hero md:min-h-screen bg-fixed"
       style={{ backgroundImage: `url(${bannerImg})` }}
     >
       <div className="hero-overlay bg-opacity-60"></div>
